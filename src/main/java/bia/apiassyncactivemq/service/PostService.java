@@ -26,33 +26,14 @@ public class PostService {
     public Post savePost(Post post) {
         return postRepository.save(post);
     }
-    public Comment addCommentToPost(Integer postId, Comment comment) throws EntityNotFoundException {
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new EntityNotFoundException("Post not found"));
-        comment.setPost(post);
-        post.getComments().add(comment);
 
-        return comment;
+    public HistoryEnum getLastState(Integer id) {
+        Post post = findPost(id);
+        List<History> list = post.getHistory();
+        HistoryEnum lastStateEnum = list.get(list.size() - 1).getStatus();
+
+        return lastStateEnum;
     }
-
-//    public History addHistoryToPost(Integer postId, History history) throws EntityNotFoundException {
-//        Post post = postRepository.findById(postId)
-//                .orElseThrow(() -> new EntityNotFoundException("Post not found"));
-//
-//        history.setPost(post);
-//        post.getHistory().add(history);
-//
-//        return history;
-//    }
-public History addHistoryToPost(Integer postId, History history) {
-    Post post = postRepository.findById(postId).get();
-
-    history.setPost(post);
-    post.getHistory().add(history);
-
-    return history;
-}
-
     public List<Post> getAllPosts() {
         return postRepository.findAll();
     }

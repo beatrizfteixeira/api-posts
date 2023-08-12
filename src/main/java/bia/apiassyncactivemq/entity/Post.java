@@ -9,7 +9,6 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,15 +19,16 @@ public class Post {
 
     private String body;
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<History> history = new ArrayList<>();
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+
     public void addHistory(History h) {
         history.add(h);
     }
@@ -42,6 +42,29 @@ public class Post {
         this.id = id;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public List<History> getHistory() {
+        return history;
+    }
+
+//    public History getLastHistory() {
+//        return history.get(history.size() - 1);
+//    }
     public void setTitle(String title) {
         this.title = title;
     }
