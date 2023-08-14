@@ -4,6 +4,8 @@ import bia.apiassyncactivemq.entity.Comment;
 import bia.apiassyncactivemq.entity.History;
 import bia.apiassyncactivemq.entity.HistoryEnum;
 import bia.apiassyncactivemq.entity.Post;
+import bia.apiassyncactivemq.exception.PostAlreadyExistsException;
+import bia.apiassyncactivemq.exception.PostNotFoundException;
 import bia.apiassyncactivemq.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +40,17 @@ public class PostService {
         return postRepository.findAll();
     }
     public Post findPost(Integer id) {
-        return postRepository.findById(id).get();
+        Optional<Post> post = postRepository.findById(id);
+        return post.get();
+    }
+    public boolean verifyIfExists(Integer id) {
+        if (postRepository.existsById(id)) {
+            return true;
+        }
+        return false;
+    }
+    public void deletePostById(Integer id) {
+        postRepository.deleteById(id);
     }
 }
 

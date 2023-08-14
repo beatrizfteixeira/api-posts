@@ -40,32 +40,4 @@ public class Comment {
                 '}';
     }
 
-    // getters, setters, etc.
 }
-//@Entity
-//public class Comment {
-//    @Id
-//    private Integer id;
-//    private String body;
-//    @ManyToOne
-//    @JoinColumn(name = "post_id")
-//    private Post post;
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
-//
-//    public String getBody() {
-//        return body;
-//    }
-//
-//    public void setBody(String body) {
-//        this.body = body;
-//    }
-//
-//
-//
-//}

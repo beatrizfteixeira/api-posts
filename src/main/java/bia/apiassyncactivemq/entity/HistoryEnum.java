@@ -8,5 +8,7 @@ public enum HistoryEnum {
     COMMENTS_OK,
     ENABLED,
     DISABLED,
+
+    FAILED,
     UPDATING
 }
